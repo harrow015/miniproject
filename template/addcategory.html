@@ -1,0 +1,25 @@
+<html>
+    <body>
+        
+        <form method="post" action="{% url 'categoryaction' %}">
+            {% csrf_token %}
+            <table>
+        <tr>
+            <th>category</th>
+            <td><input type="text" name="categoryname"></td>
+        </tr>
+        <tr>
+            <th></th>
+            <td><input type="submit" value="save"></td>
+        </tr>
+    </table>
+    </form>
+    </body>
+    {% if messages %}
+    {% for msg in messages %}
+    <script>
+        alert("{{msg}}")
+    </script>
+    {% endfor %}
+    {% endif %}
+</html>

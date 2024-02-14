@@ -1,0 +1,64 @@
+<html>
+    <body>
+        <table>
+            <form method="post" action="{% url 'editaction' %}">
+                {% csrf_token %}
+                {% for v in view %}
+                <tr>
+                    <input type="hidden" value="{{v.id}}" name="id">
+                    <th>Name</th>
+            <td><input type="text" value="{{v.Name}}" name="name"></td>
+        </tr>
+        <tr>
+            <th>Address</th>
+            <td><textarea type="text"  cols="10" rows="5" name="address">{{v.Address}}</textarea></td>
+        </tr>
+        <tr>
+            <th>Gender</th>
+            <td>
+                {% if v.Gender == "male" %}
+                <input type="radio" name="gender" value="male"  checked="true">Male
+            <input type="radio" name="gender" value="female" >Female
+            {% else %}
+            <input type="radio" name="gender" value="female" >Male
+            <input type="radio" name="gender" value="female"  checked="true">female
+            {% endif %}
+        </td>
+        </tr>
+        <tr>
+            <th>Place</th>
+            <td><select name="place">
+                <option value="{{v.place}}">{{v.Place}}</option>
+                <option value="kannur">KANNUR</option>
+                <option value="alapuzha">ALAPUZHA</option>
+                <option value="kottayam">KOTTAYAM</option>
+            </select></td>
+        </tr>
+        <tr>
+            <th>DOB</th>
+            <td><input type="date" value="{{v.DOB}}" name="dob"></td>
+        </tr>
+        <tr>
+            <th>Mobile</th>
+            <td><input type="text" value="{{v.Mobile}}" name="mobile"></td>
+        </tr>
+        <tr>
+            <th>Username</th>
+            <td><input type="text" value="{{v.Username}}" name="username"></td>
+        </tr>
+      
+        <tr><th></th>
+            <td><input type="submit" value="update"></td>
+        </tr>
+        {% endfor %}
+    </form>
+    </table>
+    {% if messages %}
+    {% for msg in messages %}
+    <script>
+        alert('{{msg}}')
+    </script>
+    {% endfor %}
+    {% endif %}
+    </body>
+</html>

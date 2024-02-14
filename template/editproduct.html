@@ -1,0 +1,61 @@
+hiii
+<html>
+
+<body>
+  <form method="post" action="{% url 'editproductaction' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% for v in view %}
+    <table>
+      <tr>
+        <input type="hidden" value="{{v.id}}" name="id">
+        <th>Name</th>
+        <td><input type="text" id="name" value="{{v.name}}" name="name"></td>
+      </tr>
+      <tr>
+        <th>price</th>
+        <td><input type="text" id="price" value="{{v.price}}" name="price"></td>
+      </tr>
+      <tr>
+        <th>details</th>
+        <td><input type="text" id="details" value="{{v.details}}" name="details"></td>
+      </tr>
+      <tr>
+        <th>stock</th>
+        <td><input type="text" id="stock" value="{{v.stock}}" name="stock"></td>
+      </tr>
+
+      <tr>
+        <th>category</th>
+        <td>
+          <select name="category" id="category" name="category">
+        
+             <option value="{{v.id}}">{{v.category_id.categoryname}}</option>
+             {% for p in ca %}
+             <option value="{{p.id}}">{{p.categoryname}}</option>
+             {% endfor %}
+             
+          </select>
+        </td>
+
+      </tr>
+      <tr>
+        <th>image</th>
+        <td><input type="file" id="image" value="{{v.image}}" name="image"><img src="{{v.image.url}}" height="100px" width="100px"></td>
+      </tr>
+
+      <tr>
+        <th></th>
+        <td><input type="submit" value="update"></td>
+      </tr>
+    </table>
+    {% endfor %}
+  </form>
+</body>
+{% if messages %}
+    {% for msg in messages %}
+    <script>
+        alert('{{msg}}')
+    </script>
+    {% endfor %}
+    {% endif %}
+</html>

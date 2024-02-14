@@ -1,0 +1,18 @@
+<html>
+    <body>
+        <li><a href="{% url 'sellereditinfo' %}">edit details</a></li>
+        <li><a href="{% url 'product' %}">add product</a></li>
+        <li><a href="{% url 'viewproduct' %}">view product</a></li>
+        <li><a href="{% url 'orderdetails_seller'%}">orderdetails_seller</a></li>
+        <li><a href="{% url 'changepassword_seller' %}">changepassword</a></li>  
+        <li><a href="{% url 'logout' %}">logout</a></li>      
+    </body>
+    {% if messages %}
+    {% for msg in messages %}
+    <script>
+        alert('{{msg}}')
+    </script>
+    {% endfor %}
+    {% endif %}
+</html>
+

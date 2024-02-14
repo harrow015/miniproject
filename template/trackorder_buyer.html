@@ -1,0 +1,25 @@
+hiii
+<html>
+    <body>
+        <table>
+        <tr><th>date</th>
+            <th>time</th>
+            <th>details</th>
+        </tr>
+        {% for v in view %}
+        <tr>
+            <td>{{v.date}}</td>
+            <td>{{v.time}}</td>
+            <td>{{v.details}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </body>
+    {% if messages %}
+    {% for msg in messages %}
+    <script>
+        alert("{{msg}}")
+    </script>
+    {% endfor %}
+    {% endif %}
+</html>

@@ -1,0 +1,27 @@
+<html>
+    <body>
+        <form method="post" action="{% url 'trackorderaction' %}">
+        <table>
+            {% csrf_token %}
+            {% for v in view %}
+   <tr>
+    <th></th>
+    <td></td>
+    <input type="hidden" name="id" value="{{v.id}}" >
+    {% endfor %}
+    </tr>
+            <tr>
+            <th> details</th>
+
+            <td><textarea type="text" cols="10" rows="5" name="details"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <th></th>
+            <td><input type="submit" value="add">
+            </td>
+        </tr>
+</table>
+</form>
+    </body>
+</html>

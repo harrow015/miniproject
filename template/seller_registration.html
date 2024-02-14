@@ -1,0 +1,152 @@
+<html>
+    <script type="text/javascript">
+        function validation(){
+            var alpha=/^[A-Za-z]+$/;
+            var num=/^[0-9]{10}$/;
+
+            var name=document.getElementById("name");
+            var name=document.getElementById('name');
+            var address=document.getElementById('address');
+            var gender=document.myform.gender;
+            var place=document.getElementById('place');
+            var dob=document.getElementById('dob');
+            var mobile=document.getElementById('mobile');
+            var username=document.getElementById('username');
+            var password=document.getElementById('password');
+            var image=document.getElementById("image");
+            
+            if(name.value.length == 0)
+            {
+                alert("enter a name");
+                return false;
+            }
+            else if(!name.value.match(alpha))
+            {
+                alert("invalid name");
+                name.focus();
+                return false;
+            }
+            else if(address.value.length == 0)
+            {
+                alert("enter address");
+                return false;
+            }
+            else if(gender[0].checked == false && gender[1].checked == false)
+           {
+            alert("enter gender");
+            return false;
+           }
+          
+          else if(place.value.length == 0)
+          {
+            alert("select place");
+            return false;
+          }
+          else if(dob.value.length == 0)
+          {
+            alert("enter dob");
+            return false;
+          }
+          else if(mobile.value.length == 0)
+          {
+            alert("enter mobile");
+            return false;
+          }
+          else if(mobile.value.match(num))
+          {
+            alert("invalid number");
+            mobile.focus();
+            return false;
+
+          }
+          else if(username.value.length == 0)
+          {
+            alert("enter userrname");
+            return false;
+          }
+          else if(password.value.length == 0)
+          {
+            alert("enter password");
+            return false;
+          }
+
+          else if(image.value.length == 0)
+          {
+            alert("select image");
+            return false;
+          }
+          else return true;
+        }
+        </script>
+
+     
+
+<body>
+    <table>
+        <form method="post" action="{% url 'sellerregisteraction' %}" name="myform" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            <tr>
+                <th>Name</th>
+                <td><input type="text" id="name" name="name"></td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td><textarea type="text" cols="10" rows="5" id="address" name="address"></textarea></td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td><input type="radio" id="gender" name="gender" value="male">Male
+                    <input type="radio" id="gender" name="gender" value="female">Female
+                </td>
+            </tr>
+            <tr>
+                <th>Place</th>
+                <td>
+                    <select id="place" name="place">
+                        <option value="">---select---</option>
+                        <option value="kannur">KANNUR</option>
+                        <option value="alapuzha">ALAPUZHA</option>
+                        <option value="kottayam">KOTTAYAM</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>DOB</th>
+                <td><input type="date" id="dob" value="date" name="dob"></td>
+            </tr>
+            <tr>
+                <th>Mobile</th>
+                <td><input type="text" id="mobile" name="mobile"></td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td><input type="text" id="username" name="username"></td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td><input type="password" id="password" name="password"></td>
+            </tr>
+            <tr>
+                <th>image</th>
+                <td><input type="file" id="image" name="image"></td>
+            </tr>
+           
+            <tr>
+                <th></th>
+                <td><input type="submit" value="save"  onclick="return validation()"></td>
+            </tr>
+
+        </form>
+    </table>
+</body>
+{% if messages %}
+    {% for msg in messages %}
+    <script>
+        alert('{{msg}}')
+    </script>
+    {% endfor %}
+    {% endif %}
+
+
+</html>
